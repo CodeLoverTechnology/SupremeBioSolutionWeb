@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SBioSolDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="M_MasterTable">
+          <Key>
+            <PropertyRef Name="MasterId" />
+          </Key>
+          <Property Name="MasterId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MasterValue" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MasterTable" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="M_ProductMaster">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeOfProduct" Type="int" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SubTag" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="COMPOSITION" Type="nvarchar(max)" />
+          <Property Name="DOSAGE" Type="nvarchar(max)" />
+          <Property Name="Prd_FUNCTION" Type="nvarchar(max)" />
+          <Property Name="PRESENTATION" Type="nvarchar(max)" />
+          <Property Name="Prod_Pics" Type="nvarchar(max)" />
+          <Property Name="Remarks" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="M_UserMaster">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Pwd" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_M_ProductMaster_M_MasterTable">
+          <End Role="M_MasterTable" Type="Self.M_MasterTable" Multiplicity="1" />
+          <End Role="M_ProductMaster" Type="Self.M_ProductMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_MasterTable">
+              <PropertyRef Name="MasterId" />
+            </Principal>
+            <Dependent Role="M_ProductMaster">
+              <PropertyRef Name="TypeOfProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SBioSolDbModelStoreContainer">
+          <EntitySet Name="M_MasterTable" EntityType="Self.M_MasterTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="M_ProductMaster" EntityType="Self.M_ProductMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="M_UserMaster" EntityType="Self.M_UserMaster" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_M_ProductMaster_M_MasterTable" Association="Self.FK_M_ProductMaster_M_MasterTable">
+            <End Role="M_MasterTable" EntitySet="M_MasterTable" />
+            <End Role="M_ProductMaster" EntitySet="M_ProductMaster" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SBioSolDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="M_MasterTable">
+          <Key>
+            <PropertyRef Name="MasterId" />
+          </Key>
+          <Property Name="MasterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MasterValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MasterTable" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="M_ProductMaster" Relationship="Self.FK_M_ProductMaster_M_MasterTable" FromRole="M_MasterTable" ToRole="M_ProductMaster" />
+        </EntityType>
+        <EntityType Name="M_ProductMaster">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeOfProduct" Type="Int32" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SubTag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="COMPOSITION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DOSAGE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Prd_FUNCTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PRESENTATION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Prod_Pics" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="M_MasterTable" Relationship="Self.FK_M_ProductMaster_M_MasterTable" FromRole="M_ProductMaster" ToRole="M_MasterTable" />
+        </EntityType>
+        <EntityType Name="M_UserMaster">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pwd" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_M_ProductMaster_M_MasterTable">
+          <End Role="M_MasterTable" Type="Self.M_MasterTable" Multiplicity="1" />
+          <End Role="M_ProductMaster" Type="Self.M_ProductMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_MasterTable">
+              <PropertyRef Name="MasterId" />
+            </Principal>
+            <Dependent Role="M_ProductMaster">
+              <PropertyRef Name="TypeOfProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SBioSolDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="M_MasterTable" EntityType="Self.M_MasterTable" />
+          <EntitySet Name="M_ProductMaster" EntityType="Self.M_ProductMaster" />
+          <EntitySet Name="M_UserMaster" EntityType="Self.M_UserMaster" />
+          <AssociationSet Name="FK_M_ProductMaster_M_MasterTable" Association="Self.FK_M_ProductMaster_M_MasterTable">
+            <End Role="M_MasterTable" EntitySet="M_MasterTable" />
+            <End Role="M_ProductMaster" EntitySet="M_ProductMaster" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SBioSolDbModelStoreContainer" CdmEntityContainer="SBioSolDbEntities">
+          <EntitySetMapping Name="M_MasterTable">
+            <EntityTypeMapping TypeName="SBioSolDbModel.M_MasterTable">
+              <MappingFragment StoreEntitySet="M_MasterTable">
+                <ScalarProperty Name="MasterId" ColumnName="MasterId" />
+                <ScalarProperty Name="MasterValue" ColumnName="MasterValue" />
+                <ScalarProperty Name="MasterTable" ColumnName="MasterTable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_ProductMaster">
+            <EntityTypeMapping TypeName="SBioSolDbModel.M_ProductMaster">
+              <MappingFragment StoreEntitySet="M_ProductMaster">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="TypeOfProduct" ColumnName="TypeOfProduct" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="SubTag" ColumnName="SubTag" />
+                <ScalarProperty Name="COMPOSITION" ColumnName="COMPOSITION" />
+                <ScalarProperty Name="DOSAGE" ColumnName="DOSAGE" />
+                <ScalarProperty Name="Prd_FUNCTION" ColumnName="Prd_FUNCTION" />
+                <ScalarProperty Name="PRESENTATION" ColumnName="PRESENTATION" />
+                <ScalarProperty Name="Prod_Pics" ColumnName="Prod_Pics" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_UserMaster">
+            <EntityTypeMapping TypeName="SBioSolDbModel.M_UserMaster">
+              <MappingFragment StoreEntitySet="M_UserMaster">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Pwd" ColumnName="Pwd" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

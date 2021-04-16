@@ -1,0 +1,112 @@
+﻿@model IEnumerable<SupremeBioSolutionWeb.Models.M_ProductMaster>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubTag)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.COMPOSITION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DOSAGE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Prd_FUNCTION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRESENTATION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Prod_Pics)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModifiedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModifiedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.M_MasterTable.MasterValue)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubTag)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COMPOSITION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DOSAGE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Prd_FUNCTION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRESENTATION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Prod_Pics)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remarks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModifiedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModifiedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Active)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.M_MasterTable.MasterValue)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProductId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ProductId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProductId })
+        </td>
+    </tr>
+}
+
+</table>

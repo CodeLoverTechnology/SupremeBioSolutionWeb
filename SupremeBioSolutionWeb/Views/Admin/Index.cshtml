@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Admin Dashboard</h2>
+<hr />
+<div class="row">
+    <div class="container-fluid">
+        @Html.ActionLink("Master", "Index", "M_MasterTable", null, new { @class = "btn btn-primary p-3 rounded" })
+        @Html.ActionLink("User Master", "Index", "M_UserMaster", null, new { @class = "btn btn-primary  p-3 rounded" })
+        @Html.ActionLink("Product", "Index", "M_ProductMaster", null, new { @class = "btn btn-primary  p-3 rounded" })
+        @*@Html.ActionLink("News", "Index", "NewsMasters", null, new { @class = "btn btn-primary  p-3 rounded" })
+        @Html.ActionLink("e-News", "Index", "E_NewsPaper", null, new { @class = "btn btn-primary  p-3 rounded" })*@
+    </div>
+
+</div>

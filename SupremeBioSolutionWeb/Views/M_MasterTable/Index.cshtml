@@ -1,0 +1,40 @@
+﻿@model IEnumerable<SupremeBioSolutionWeb.Models.M_MasterTable>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MasterValue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MasterTable)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MasterValue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MasterTable)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MasterId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MasterId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MasterId })
+        </td>
+    </tr>
+}
+
+</table>
